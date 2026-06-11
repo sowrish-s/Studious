@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A modern student productivity dashboard for planning focused study sessions.">
-  <title>Studious — Plan smarter</title>
+  <title>Studious - Plan smarter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -23,8 +23,18 @@
         <span>studious</span>
       </a>
       <div class="topbar-right">
-        <div class="streak-pill"><span class="streak-dot"></span><strong>7</strong> day streak</div>
-        <button class="avatar" aria-label="Open profile">SK</button>
+        <a class="contact-link whatsapp-link" href="https://wa.me/917558148810" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp at 75581 48810">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"/><path d="M8.2 8.1c.2-.4.4-.4.7-.4h.4c.1 0 .3 0 .4.4l.6 1.5c.1.3.1.4-.1.6l-.5.6c-.2.2-.2.3-.1.5.6 1.2 1.5 2.1 2.8 2.7.2.1.4.1.5-.1l.7-.9c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.2.4.4 0 .3-.2 1.3-.8 1.8-.5.5-1.2.7-2 .5-1.2-.3-2.7-.9-4.3-2.4-1.3-1.2-2.2-2.7-2.5-3.8-.3-.9 0-1.6.3-2Z"/></svg>
+          </span>
+          <span>75581 48810</span>
+        </a>
+        <a class="contact-link email-link" href="mailto:sowrishsrinivasan@gmail.com" aria-label="Email sowrishsrinivasan@gmail.com">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m5 7 7 5 7-5"/></svg>
+          </span>
+          <span>sowrishsrinivasan@gmail.com</span>
+        </a>
       </div>
     </header>
 
@@ -90,8 +100,9 @@
           </div>
 
           <button class="generate-btn" type="submit">
-            <span>Generate my game plan</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+            <span class="button-label">Generate my game plan</span>
+            <span class="button-loader" aria-hidden="true"></span>
+            <svg class="button-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
           </button>
           <p class="form-note">Built around your real capacity. No guilt trips.</p>
         </form>
@@ -124,6 +135,35 @@
             </article>
           </div>
 
+          <article class="readiness-card">
+            <div class="readiness-copy">
+              <div class="readiness-heading">
+                <span class="readiness-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg></span>
+                <div>
+                  <p class="section-kicker">READINESS SIGNAL</p>
+                  <h2>Productivity Readiness</h2>
+                </div>
+              </div>
+              <p id="readinessText">Your energy, workload, urgency, and available time are working together.</p>
+              <div class="readiness-factors">
+                <span><i></i> Energy</span>
+                <span><i></i> Capacity</span>
+                <span><i></i> Workload</span>
+                <span><i></i> Urgency</span>
+              </div>
+            </div>
+            <div class="readiness-visual">
+              <div class="readiness-ring" id="readinessRing" role="img" aria-label="Productivity readiness score">
+                <svg viewBox="0 0 128 128" aria-hidden="true">
+                  <circle class="ring-track" cx="64" cy="64" r="52"></circle>
+                  <circle class="ring-progress" id="ringProgress" cx="64" cy="64" r="52"></circle>
+                </svg>
+                <div class="ring-score"><strong id="readinessScore">0</strong><span>/100</span></div>
+              </div>
+              <span class="readiness-status" id="readinessStatus">Calculating</span>
+            </div>
+          </article>
+
           <article class="schedule-card">
             <div class="schedule-header">
               <div>
@@ -131,6 +171,22 @@
                 <h2>Today’s focus blocks</h2>
               </div>
               <span class="total-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg><strong id="totalHours">4h</strong> total</span>
+            </div>
+            <div class="completion-tracker" aria-live="polite">
+              <div class="completion-summary">
+                <div>
+                  <strong id="completionCount">0 / 0 tasks completed</strong>
+                  <span id="completionPercent">0% complete</span>
+                </div>
+                <span class="completion-badge" id="completionBadge">LET'S BEGIN</span>
+              </div>
+              <div class="completion-bar" role="progressbar" aria-label="Focus blocks completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span id="completionBar"></span>
+              </div>
+              <div class="completion-success" id="completionSuccess">
+                <span aria-hidden="true">&#127881;</span>
+                <strong>Today's plan completed!</strong>
+              </div>
             </div>
             <div id="scheduleList" class="schedule-list"></div>
             <div class="coach-note">
