@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern student productivity dashboard for planning focused study sessions.">
+  <title>Studious — Plan smarter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Studious home">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.75h9.5A4.5 4.5 0 0 1 19 9.25v10H9.5A4.5 4.5 0 0 1 5 14.75v-10Z"/><path d="M8 8h6M8 11h7M8 14h4"/></svg>
+        </span>
+        <span>studious</span>
+      </a>
+      <div class="topbar-right">
+        <div class="streak-pill"><span class="streak-dot"></span><strong>7</strong> day streak</div>
+        <button class="avatar" aria-label="Open profile">SK</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow"><span></span> YOUR STUDY COMMAND CENTER</p>
+          <h1>Turn the pressure<br>into a <em>plan.</em></h1>
+          <p class="hero-copy">Tell us what’s ahead and how you’re feeling. We’ll build a focused plan that works with your energy, not against it.</p>
+        </div>
+        <div class="date-card">
+          <span id="dayName">THURSDAY</span>
+          <strong id="dayNumber">11</strong>
+          <small id="monthYear">JUN · 2026</small>
+          <div class="date-card-line"></div>
+          <p>One clear plan.<br>One better day.</p>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <form class="panel input-panel" id="plannerForm">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">01 / INPUT</p>
+              <h2>What’s on your plate?</h2>
+            </div>
+            <span class="status-chip">READY</span>
+          </div>
+
+          <label class="field full-width">
+            <span>Assignment name</span>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 18.5 9.5M4 20l4.2-.8L19.3 8.1a1.8 1.8 0 0 0 0-2.5l-.9-.9a1.8 1.8 0 0 0-2.5 0L4.8 15.8 4 20Z"/></svg>
+              <input id="assignment" type="text" value="Psychology research paper" placeholder="e.g. Physics lab report" required>
+            </div>
+          </label>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Due date</span>
+              <div class="input-wrap">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg>
+                <input id="dueDate" type="date" required>
+              </div>
+            </label>
+            <label class="field">
+              <span>Hours available today</span>
+              <div class="input-wrap">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg>
+                <input id="hours" type="number" min="0.5" max="12" step="0.5" value="4" required>
+                <small>HRS</small>
+              </div>
+            </label>
+          </div>
+
+          <div class="mood-field">
+            <div class="mood-label">
+              <span>How’s your energy?</span>
+              <strong><span id="moodValue">6</span><small>/10</small></strong>
+            </div>
+            <input id="mood" type="range" min="1" max="10" value="6">
+            <div class="mood-scale"><span>Drained</span><span>Locked in</span></div>
+          </div>
+
+          <button class="generate-btn" type="submit">
+            <span>Generate my game plan</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+          </button>
+          <p class="form-note">Built around your real capacity. No guilt trips.</p>
+        </form>
+
+        <section class="results-column" aria-live="polite">
+          <div class="metrics-grid">
+            <article class="metric-card priority-card">
+              <div class="metric-top">
+                <span class="metric-icon"><svg viewBox="0 0 24 24"><path d="m12 3 2.2 5.3L20 9l-4.3 3.8L17 19l-5-3.2L7 19l1.3-6.2L4 9l5.8-.7L12 3Z"/></svg></span>
+                <span class="metric-tag">PRIORITY</span>
+              </div>
+              <div class="score-row">
+                <strong id="priorityScore">82</strong><span>/100</span>
+              </div>
+              <div class="meter"><span id="priorityBar"></span></div>
+              <p id="priorityText">High priority. Start with a strong first draft today.</p>
+            </article>
+
+            <article class="metric-card burnout-card">
+              <div class="metric-top">
+                <span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M13.5 3.5c.7 3.3-.4 4.7-1.7 6.1-1-1.3-1.8-2.5-1.5-4.4C7.2 7.4 5 10.2 5 13.7A7 7 0 0 0 19 14c0-3.3-1.7-6.9-5.5-10.5Z"/></svg></span>
+                <span class="metric-tag">BURNOUT RISK</span>
+              </div>
+              <div class="risk-row">
+                <strong id="riskLabel">Moderate</strong>
+                <span id="riskScore">48%</span>
+              </div>
+              <div class="meter risk-meter"><span id="riskBar"></span></div>
+              <p id="riskText">Keep sessions short and protect your breaks.</p>
+            </article>
+          </div>
+
+          <article class="schedule-card">
+            <div class="schedule-header">
+              <div>
+                <p class="section-kicker">02 / YOUR PLAN</p>
+                <h2>Today’s focus blocks</h2>
+              </div>
+              <span class="total-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg><strong id="totalHours">4h</strong> total</span>
+            </div>
+            <div id="scheduleList" class="schedule-list"></div>
+            <div class="coach-note">
+              <span>COACH’S NOTE</span>
+              <p id="coachNote">You have enough time to make meaningful progress. Begin with the hardest thinking while your focus is fresh.</p>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
